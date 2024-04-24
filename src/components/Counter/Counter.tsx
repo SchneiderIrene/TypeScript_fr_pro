@@ -1,15 +1,15 @@
 import './stiles.css'
-import Button from '../components/Button/Button';
+import Button from '../Button/Button';
 import { useState } from "react";
 
 function Counter() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number>(0);
 
-  const onMinus = () => {
+  const onMinus = ():void => {
     setCount((p) => p - 1);
   };
 
-  const onPlus = () => {
+  const onPlus = ():void => {
     setCount((p) => p + 1);
   };
 
