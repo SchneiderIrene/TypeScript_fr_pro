@@ -1,5 +1,5 @@
 export interface TextAreaProps {
     placeholder: string;
     name: string;
-    label: string;
+    label?: string;
   }

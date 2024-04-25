@@ -1,13 +1,13 @@
-import './styles.css';
 import { TextAreaProps } from './types';
+import {Text, TextAreaContainer} from './styles';
 
 
 function TextArea({ placeholder, name, label }: TextAreaProps) {
   return (
-    <div className="text-area-container">
-      <label>{label}</label>
-      <textarea placeholder={placeholder} name={name}></textarea>
-    </div>
+    <TextAreaContainer>
+     <label>{label}</label>
+      <Text/>
+    </TextAreaContainer>
   );
 }
 
