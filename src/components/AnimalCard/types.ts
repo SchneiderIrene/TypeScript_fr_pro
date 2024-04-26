@@ -1,8 +1,4 @@
-// type AnimalData = {
-//   name: string;
-//   species: string;
-//   image: string;
-// };
+
 
 interface AnimalData {
   name: string;

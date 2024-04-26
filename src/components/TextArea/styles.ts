@@ -1,4 +1,6 @@
-textarea {
+import styled from "@emotion/styled";
+
+export const Text = styled.div`
     width: 150px;
     height: 40px;
     background: aquamarine;
@@ -6,10 +8,13 @@ textarea {
     border-radius: 5px;
     font-family: SansSerif, serif;
     padding: 10px;
-  }
+`
+   
   
-  .text-area-container {
+  
+  export const TextAreaContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 5px;
-  }
+  `
+    

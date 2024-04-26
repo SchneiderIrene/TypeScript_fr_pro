@@ -1,4 +1,6 @@
-.loginform-wrapper {
+import styled from "@emotion/styled";
+
+export const  LoginformWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -8,15 +10,20 @@
     border: 1px solid black;
     border-radius: 4px;
     background-color: white;
-  }
+` 
+   
   
-  .loginform-name {
+  
+export const LoginformName = styled.p`
     font-size: 24px;
-  }
+`
+
   
-  .inputs-container {
-    display: flex;
+  
+  export const InputsContainer = styled.div`
+  display: flex;
     flex-direction: column;
     gap: 20px;
     width: 100%;
-  }
+  `
+    
