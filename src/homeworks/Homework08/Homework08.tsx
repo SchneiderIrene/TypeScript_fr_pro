@@ -8,6 +8,7 @@ import Feedback from 'components/Feedback/Feedback';
 import Input from 'components/Input/Input';
 import ProfileCard from 'components/ProfileCard/ProfileCard';
 import TextArea from 'components/TextArea/TextArea';
+import LoginForm from 'components/LoginForm/LoginForm';
 
 
 
@@ -44,6 +45,7 @@ const [like, setLike] = useState<number>(0);
     <Homework08Container>
         <ButtonComponentContainer>
       <Button name="Homework08" disabled={true}/>
+      <Button name="Homework08" />
     </ButtonComponentContainer>
     <AnimalCard animalData={LionData}/>
     <AnimalCard animalData={ZebraData}/>
@@ -56,6 +58,7 @@ const [like, setLike] = useState<number>(0);
     <Input  name='name' placeholder='name' label='name'/>  
     < ProfileCard/>
     <TextArea placeholder='Name' name='Name' label='Name'/>
+    <LoginForm/>
     </Homework08Container>
     
   );

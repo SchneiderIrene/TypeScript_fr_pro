@@ -6,8 +6,6 @@ import {FeedbackContainer, FeedbackResultContainer, LikeDislikeContainer, Result
 
 function Feedback({like, addLike, dislike, addDislike, resetResults}: FeedbackProps) {
 
-  
-  
 
   return (
     <FeedbackContainer>

@@ -12,6 +12,13 @@ export const AnimalCardWrapper = styled.div`
     padding: 20px;
 ` 
 
+export const AnimalImage = styled.img`
+    width: 100px;
+`
+
+export const CardTitle = styled.h2``
+export const CardParagraph = styled.p``
+
   
  
   

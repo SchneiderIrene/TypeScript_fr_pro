@@ -6,14 +6,10 @@ function Input({ name, type = "text", placeholder, label, onInputChange }: Input
   return (
     <InputComponentContainer>
       <InputComponentLabel>{label}</InputComponentLabel>
-      <InputComponent>
-      <input
-        name={name}
+      <InputComponent name={name}
         type={type}
         placeholder={placeholder}
-        onChange={onInputChange}
-      />
-      </InputComponent>
+        onChange={onInputChange}/>
     </InputComponentContainer>
   );
 }

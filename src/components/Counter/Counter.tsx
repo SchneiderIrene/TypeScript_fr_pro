@@ -1,7 +1,7 @@
 
 import Button from 'components/Button/Button';
 import { CounterProps } from './types'; 
-import { CounterWrapper, ButtonControl } from './stiles';
+import { CounterWrapper, ButtonControl, CounterResult } from './styles';
 
 
 
@@ -15,7 +15,7 @@ function Counter({countValue, onMinusClick, onPlusClick}: CounterProps) {
       <ButtonControl>
         <Button onButtonClick={onMinusClick} name="-" />
       </ButtonControl>
-      <p>{countValue}</p>
+      <CounterResult>{countValue}</CounterResult>
       <ButtonControl>
         <Button onButtonClick={onPlusClick} name="+" />
       </ButtonControl>

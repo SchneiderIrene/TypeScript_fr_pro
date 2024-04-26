@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
 
-export const ButtonComponent = styled.button`
+interface ButtonComponentStylesProps{
+    disabled: boolean
+}
+
+export const ButtonComponent = styled.button<ButtonComponentStylesProps>`
     width: 100%;
     height: 70px;
     outline: none;
@@ -12,6 +16,3 @@ export const ButtonComponent = styled.button`
     font-size: 16px;
     cursor: pointer;
 ` 
-
-
-// background: ${({ mainButton }) => mainButton ? '#E84162' : '#E87241'} ;

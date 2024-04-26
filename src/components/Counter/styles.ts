@@ -13,7 +13,9 @@ export const CounterWrapper = styled.div`
   
 export const  ButtonControl  = styled.div`
   width: 100px;
-      font-size: 32px;
-    font-weight: bold;
+      
 `
- 
+export const  CounterResult  = styled.p`
+    font-size: 32px;
+    font-weight: bold;
+` 
