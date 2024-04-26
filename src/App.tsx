@@ -1,11 +1,12 @@
-import './App.css';
-import Homework08 from 'homeworks/Homework08/Homework08';
+import GlobalStyles from 'globalStyles/GlobalStyles';
+import Lesson09 from 'lessons/lesson09/Lesson09';
 
 function App() {
   return (
-    <div className="App">
-      <Homework08/>
-    </div>
+   <>
+      <GlobalStyles/>
+      <Lesson09/>
+   </>
   );
 }
 

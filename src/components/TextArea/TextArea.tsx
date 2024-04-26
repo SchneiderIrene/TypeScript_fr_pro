@@ -1,11 +1,11 @@
 import { TextAreaProps } from './types';
-import {Text, TextAreaContainer} from './styles';
+import {Text, TextAreaContainer, Label} from './styles';
 
 
 function TextArea({ placeholder, name, label }: TextAreaProps) {
   return (
     <TextAreaContainer>
-     <label>{label}</label>
+     <Label>{label}</Label>
       <Text/>
     </TextAreaContainer>
   );

@@ -1,6 +1,12 @@
 import styled from "@emotion/styled";
 
-export const Text = styled.div`
+  export const TextAreaContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  `
+    
+export const Text = styled.textarea`
     width: 150px;
     height: 40px;
     background: aquamarine;
@@ -9,12 +15,5 @@ export const Text = styled.div`
     font-family: SansSerif, serif;
     padding: 10px;
 `
-   
-  
-  
-  export const TextAreaContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  `
-    
+
+export const Label = styled.label``
