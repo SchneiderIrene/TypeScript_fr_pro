@@ -1,10 +1,13 @@
 import { ChangeEvent, useState, useEffect } from 'react';
 import { Lesson09Component, InputExample, Result } from './styles';
-import { log } from 'console';
+import { error, log } from 'console';
 
 function Lesson09() {
   const [inputValue, setInputValue] = useState<string>('');
   const [inputValue2, setInputValue2] = useState<string>('');
+
+
+  const [activity, setActivity] = useState<string>('');
 
   const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -16,11 +19,17 @@ function Lesson09() {
 
 useEffect(()=>{
     console.log('Mouting');
+    getActivity()
 }, []);
 
 useEffect(()=>{
-    console.log('Updating');
-}, [inputValue]);
+    if(!!activity){
+      getActivity();
+      console.log('Updating');
+    }
+}, [inputValue, inputValue2]);
+
+
 
 
 useEffect(()=>{
@@ -29,6 +38,26 @@ useEffect(()=>{
     }
 },[]);
 
+
+const getActivity = async()=>{
+  try {
+
+    const responce = await fetch('https://www.boredapi.com/api/activity')
+const result = await responce.json();
+console.log(result.activity);
+
+if (!responce.ok) {
+  throw Object.assign(new Error('API Error'), {
+    response: result 
+  });
+} else{
+  setActivity(result.activity)
+}
+  }catch (error){
+    console.log(error);
+  }
+
+}
 
 // console.log('render');
 
@@ -46,6 +75,7 @@ useEffect(()=>{
       />
       <Result>{inputValue}</Result>
       <Result>{inputValue2}</Result>
+      <Result>{activity}</Result>
     </Lesson09Component>
   );
 }
