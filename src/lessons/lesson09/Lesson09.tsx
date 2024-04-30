@@ -6,7 +6,6 @@ function Lesson09() {
   const [inputValue, setInputValue] = useState<string>('');
   const [inputValue2, setInputValue2] = useState<string>('');
 
-
   const [activity, setActivity] = useState<string>('');
 
   const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
@@ -30,8 +29,6 @@ useEffect(()=>{
 }, [inputValue, inputValue2]);
 
 
-
-
 useEffect(()=>{
     return ()=>{
         console.log('Unmouting');
@@ -51,7 +48,7 @@ if (!responce.ok) {
     response: result 
   });
 } else{
-  setActivity(result.activity)
+  // setActivity(result.activity)
 }
   }catch (error){
     console.log(error);
