@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const  LoginformWrapper = styled.div`
+export const  Loginform = styled.form`
     display: flex;
     flex-direction: column;
     gap: 30px;

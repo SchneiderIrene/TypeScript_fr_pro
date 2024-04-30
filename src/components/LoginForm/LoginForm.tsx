@@ -1,27 +1,49 @@
 import Input from "components/Input/Input";
 import Button from "components/Button/Button";
-import {LoginformWrapper, LoginformName, InputsContainer} from './styles';
+import {Loginform, LoginformName, InputsContainer} from './styles';
+import { useFormik } from "formik";
+import {LoginFormValues} from './types';
 
 function LoginForm() {
+
+const formik = useFormik({
+  initialValues: {
+email: '',
+password: '',
+  } as LoginFormValues,
+  onSubmit: (values: LoginFormValues)=>{
+    console.log(values);
+  }
+  
+  
+});
+
+console.log(formik);
+
+
   return (
-    <LoginformWrapper>
+    <Loginform onSubmit={formik.handleSubmit}>
       <LoginformName>Login form</LoginformName>
       <InputsContainer>
         <Input
-          name="login-email"
+          name="email"
           type="email"
           placeholder="Enter your email"
           label="Email"
+          onInputChange={formik.handleChange}
+          value={formik.values.email}
         />
         <Input
-          name="login-password"
+          name="password"
           type="password"
           placeholder="Enter your password"
           label="Password"
+          onInputChange={formik.handleChange}
+          value={formik.values.password}
         />
       </InputsContainer>
       <Button type="submit" name="Login" />
-    </LoginformWrapper>
+    </Loginform>
   );
 }
 

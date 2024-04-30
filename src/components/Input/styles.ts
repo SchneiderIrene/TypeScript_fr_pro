@@ -22,7 +22,8 @@ export const InputComponentContainer  = styled.div`
    font-size: 16px;
  
    &::placeholder {
-     color: aqua;
+     color: #6f6f6f;
+     font-size: 14px;
    }
   `
 

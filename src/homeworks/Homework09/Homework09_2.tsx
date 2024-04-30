@@ -39,12 +39,14 @@ const onShowResult = ()=>{
         onInputChange={onFirstNoteInputChange}
         name="firstNote"
         label="firstNote"
+        value={firstNote}
       />
       <Input
         placeholder="Second note"
         onInputChange={onSecondNoteInputChange}
         name="secondNote"
         label="secondNote"
+        value={secondNote}
       />
       <Button name="Show notes" onButtonClick={onShowResult} />
       <ResultBlock isShowResult={isShowResult}>

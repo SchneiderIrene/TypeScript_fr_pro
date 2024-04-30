@@ -55,7 +55,7 @@ const [like, setLike] = useState<number>(0);
         dislike={dislike}
         addDislike={addDislike}
         resetResults={resetResults}/>
-    <Input  name='name' placeholder='name' label='name'/>  
+    <Input  name='name' placeholder='name' label='name' value='name'/>  
     < ProfileCard/>
     <TextArea placeholder='Name' name='Name' label='Name'/>
     <LoginForm/>
