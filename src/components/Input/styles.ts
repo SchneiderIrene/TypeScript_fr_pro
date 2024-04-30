@@ -8,8 +8,8 @@ export const InputComponentContainer  = styled.div`
     height: fit-content;
 `
   export const InputComponentLabel = styled.label`
-    font-size: 16px;
-    color: #6f6f6f;
+    font-size: 20px;
+    color: black;
   `
    
    export const InputComponent = styled.input`
@@ -19,11 +19,11 @@ export const InputComponentContainer  = styled.div`
    outline: none;
    border: 1px solid black;
    border-radius: 4px;
-   font-size: 16px;
+   font-size: 20px;
  
    &::placeholder {
      color: #6f6f6f;
-     font-size: 14px;
+     font-size: 15px;
    }
   `
 
