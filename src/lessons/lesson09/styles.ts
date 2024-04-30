@@ -20,3 +20,5 @@ export const InputExample = styled.input`
 export const Result = styled.p`
 font-size: 20px;
 `
+
+//display: ${({ isShowResult }) => isShowResult ? 'flex' : 'none'};
