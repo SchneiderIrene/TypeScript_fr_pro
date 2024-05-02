@@ -1,7 +1,7 @@
 import Button from 'components/Button/Button';
 import AnimalCard from 'components/AnimalCard/AnimalCard';
 import { ButtonComponentContainer, Homework08Container } from './styles';
-import {LionData, ZebraData} from './data'
+import { LionData, ZebraData } from './data';
 import Counter from 'components/Counter/Counter';
 import { useState } from 'react';
 import Feedback from 'components/Feedback/Feedback';
@@ -10,10 +10,8 @@ import ProfileCard from 'components/ProfileCard/ProfileCard';
 import TextArea from 'components/TextArea/TextArea';
 import LoginForm from 'components/LoginForm/LoginForm';
 
-
-
 function Homework08() {
-const [count, setCount] = useState<number>(0);
+  const [count, setCount] = useState<number>(0);
 
   const onMinus = (): void => {
     setCount((p) => p - 1);
@@ -23,8 +21,7 @@ const [count, setCount] = useState<number>(0);
     setCount((p) => p + 1);
   };
 
-
-const [like, setLike] = useState<number>(0);
+  const [like, setLike] = useState<number>(0);
   const [dislike, setDislike] = useState<number>(0);
 
   const addLike = (): void => {
@@ -40,27 +37,27 @@ const [like, setLike] = useState<number>(0);
     setDislike(0);
   };
 
-
   return (
     <Homework08Container>
-        <ButtonComponentContainer>
-      <Button name="Homework08" disabled={true}/>
-      <Button name="Homework08" />
-    </ButtonComponentContainer>
-    <AnimalCard animalData={LionData}/>
-    <AnimalCard animalData={ZebraData}/>
-    <Counter countValue={count} onMinusClick={onMinus} onPlusClick={onPlus}/>
-    <Feedback like={like}
+      <ButtonComponentContainer>
+        <Button name="Homework08" disabled={true} />
+        <Button name="Homework08" />
+      </ButtonComponentContainer>
+      <AnimalCard animalData={LionData} />
+      <AnimalCard animalData={ZebraData} />
+      <Counter countValue={count} onMinusClick={onMinus} onPlusClick={onPlus} />
+      <Feedback
+        like={like}
         addLike={addLike}
         dislike={dislike}
         addDislike={addDislike}
-        resetResults={resetResults}/>
-    <Input  name='name' placeholder='name' label='name' value='name'/>  
-    < ProfileCard/>
-    <TextArea placeholder='Name' name='Name' label='Name'/>
-    <LoginForm/>
+        resetResults={resetResults}
+      />
+      <Input name="name" placeholder="name" label="name" value="name" />
+      <ProfileCard />
+      <TextArea placeholder="Name" name="Name" label="Name" />
+      <LoginForm />
     </Homework08Container>
-    
   );
 }
 
