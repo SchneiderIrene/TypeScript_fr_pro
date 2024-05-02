@@ -1,7 +1,7 @@
 import GlobalStyles from 'globalStyles/GlobalStyles';
 import Layout from 'components/Layout/Layout';
 
-import Lesson12 from 'lessons/Lesson12/Lesson12';
+import Homework12 from 'homeworks/Homework12/Homework12';
 
 
 
@@ -10,7 +10,7 @@ function App() {
    <>
       <GlobalStyles/>
       <Layout/>
-      <Lesson12/>
+      <Homework12/>
    </>
   );
 }

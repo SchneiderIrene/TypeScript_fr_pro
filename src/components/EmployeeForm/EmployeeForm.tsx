@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 import {
   EmployeeFormComponent,
@@ -8,17 +9,43 @@ import {
 } from './styles';
 import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
-import { EmployeeFormValues } from './types';
+import { EmployeeFormValues, EMPLOYEE_FORM_FIELD_NAMES } from './types';
 
 function EmployeeForm() {
+  const shema = Yup.object().shape({
+    [EMPLOYEE_FORM_FIELD_NAMES.FIRST_NAME]: Yup.string()
+      .required('Please, enter your first name')
+      .min(2, 'Min 2 symbols')
+      .max(50, 'Max 50 symbols'),
+
+    [EMPLOYEE_FORM_FIELD_NAMES.LAST_NAME]: Yup.string()
+      .required('Please, enter your first name')
+      .max(15, 'Max 15 symbols'),
+
+    [EMPLOYEE_FORM_FIELD_NAMES.AGE]: Yup.number()
+      .required('Please, enter your age')
+      .typeError('Enter number')
+      .min(1, 'Min 1 symbol')
+      .max(999, 'Max 3 symbols'),
+
+    [EMPLOYEE_FORM_FIELD_NAMES.POSITION]: Yup.string().max(
+      30,
+      'Max 30 symbols'
+    ),
+
+    [EMPLOYEE_FORM_FIELD_NAMES.I_AGREE]: Yup.boolean(),
+  });
+
   const formik = useFormik({
     initialValues: {
       firstName: '',
       lastName: '',
       age: '',
       position: '',
-      checkbox: false,
+      iAgree: false,
     } as EmployeeFormValues,
+    validationSchema: shema,
+    validateOnChange: false,
     onSubmit: (values: EmployeeFormValues) => {
       console.log(values);
     },
@@ -27,49 +54,53 @@ function EmployeeForm() {
   return (
     <EmployeeFormComponent onSubmit={formik.handleSubmit}>
       <Input
-        name="firstName"
+        name={EMPLOYEE_FORM_FIELD_NAMES.FIRST_NAME}
         label="First name"
         placeholder="First name"
         onInputChange={formik.handleChange}
-        value={formik.values.firstName}
+        value={formik.values[EMPLOYEE_FORM_FIELD_NAMES.FIRST_NAME]}
+        error={formik.errors[EMPLOYEE_FORM_FIELD_NAMES.FIRST_NAME]}
       />
 
       <Input
-        name="lastName"
+        name={EMPLOYEE_FORM_FIELD_NAMES.LAST_NAME}
         label="Last name"
         placeholder="Last name"
         onInputChange={formik.handleChange}
-        value={formik.values.lastName}
+        value={formik.values[EMPLOYEE_FORM_FIELD_NAMES.LAST_NAME]}
+        error={formik.errors[EMPLOYEE_FORM_FIELD_NAMES.LAST_NAME]}
       />
 
       <Input
-        name="age"
+        name={EMPLOYEE_FORM_FIELD_NAMES.AGE}
         label="Age"
         placeholder="Age"
         onInputChange={formik.handleChange}
-        value={formik.values.age}
+        value={formik.values[EMPLOYEE_FORM_FIELD_NAMES.AGE]}
+        error={formik.errors[EMPLOYEE_FORM_FIELD_NAMES.AGE]}
       />
 
       <Input
-        name="position"
+        name={EMPLOYEE_FORM_FIELD_NAMES.POSITION}
         label="Position"
         placeholder="Position"
         onInputChange={formik.handleChange}
-        value={formik.values.position}
+        value={formik.values[EMPLOYEE_FORM_FIELD_NAMES.POSITION]}
+        error={formik.errors[EMPLOYEE_FORM_FIELD_NAMES.POSITION]}
       />
 
       <CheckBoxContainer>
-        <Label htmlFor='checkbox-id'>I Agree</Label>
+        <Label htmlFor="checkbox-id">I Agree</Label>
         <CheckBox
-        id='checkbox-id'
+          id="checkbox-id"
           type="checkbox"
-          name="checkbox"
+          name={EMPLOYEE_FORM_FIELD_NAMES.I_AGREE}
           onChange={formik.handleChange}
-          checked={formik.values.checkbox}
+          checked={formik.values[EMPLOYEE_FORM_FIELD_NAMES.I_AGREE]}
         />
       </CheckBoxContainer>
 
-      <Button name="Create" type="submit" disabled={!formik.values.checkbox}/>
+      <Button name="Create" type="submit" disabled={!formik.values.iAgree} />
     </EmployeeFormComponent>
   );
 }
