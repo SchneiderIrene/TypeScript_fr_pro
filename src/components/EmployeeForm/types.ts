@@ -3,4 +3,5 @@ export interface EmployeeFormValues{
     lastName: string,
     age: string,
     position: string,
+    checkbox: boolean
 }
