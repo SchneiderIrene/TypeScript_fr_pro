@@ -1,8 +1,10 @@
 import Input from "components/Input/Input";
 import Button from "components/Button/Button";
 import {Loginform, LoginformName, InputsContainer} from './styles';
-import { useFormik } from "formik";
 import {LoginFormValues} from './types';
+
+import { useFormik } from "formik";
+
 
 function LoginForm() {
 
@@ -14,8 +16,6 @@ password: '',
   onSubmit: (values: LoginFormValues)=>{
     console.log(values);
   }
-  
-  
 });
 
 console.log(formik);

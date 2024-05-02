@@ -1,12 +1,12 @@
 import GlobalStyles from 'globalStyles/GlobalStyles';
-import Lesson11 from 'lessons/Lesson11/Lesson11';
+import Homework11 from 'homeworks/Homewowork11/Homework11';
 
 
 function App() {
   return (
    <>
       <GlobalStyles/>
-      <Lesson11/>
+      <Homework11/>
    </>
   );
 }
