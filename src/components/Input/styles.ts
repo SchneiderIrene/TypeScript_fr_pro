@@ -27,3 +27,9 @@ export const InputComponentContainer  = styled.div`
    }
   `
 
+  export const ErrorMessage = styled.p`
+  color: red;
+  font-size: 16px;
+  height: 18px;
+  `
+

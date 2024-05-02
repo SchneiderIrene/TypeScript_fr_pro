@@ -69,7 +69,7 @@ function EmployeeForm() {
         />
       </CheckBoxContainer>
 
-      <Button name="Create" type="submit" />
+      <Button name="Create" type="submit" disabled={!formik.values.checkbox}/>
     </EmployeeFormComponent>
   );
 }

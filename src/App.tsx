@@ -1,12 +1,16 @@
 import GlobalStyles from 'globalStyles/GlobalStyles';
-import Homework11 from 'homeworks/Homewowork11/Homework11';
+import Layout from 'components/Layout/Layout';
+
+import Lesson12 from 'lessons/Lesson12/Lesson12';
+
 
 
 function App() {
   return (
    <>
       <GlobalStyles/>
-      <Homework11/>
+      <Layout/>
+      <Lesson12/>
    </>
   );
 }
