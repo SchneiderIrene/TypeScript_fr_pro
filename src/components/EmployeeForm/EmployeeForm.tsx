@@ -18,6 +18,16 @@ import Button from 'components/Button/Button';
 import { EmployeeFormValues, EMPLOYEE_FORM_FIELD_NAMES } from './types';
 
 function EmployeeForm() {
+
+  const [formValues, setFormValues] = useState<EmployeeFormValues>({
+    firstName: '',
+      lastName: '',
+      age: '',
+      position: '',
+      iAgree: false,
+  });
+
+
   const shema = Yup.object().shape({
     [EMPLOYEE_FORM_FIELD_NAMES.FIRST_NAME]: Yup.string()
       .required('Please, enter your first name')
@@ -57,17 +67,11 @@ function EmployeeForm() {
     validationSchema: shema,
     validateOnChange: false,
     onSubmit: (values: EmployeeFormValues) => {
-      console.log(values);
+      formik.setValues(values);
+      setFormValues(values);
     },
   });
 
-  const [value, setValue] = useState<EmployeeFormValues>({
-    firstName: '',
-      lastName: '',
-      age: '',
-      position: '',
-      iAgree: false,
-  });
 
 
   return (
@@ -129,10 +133,10 @@ function EmployeeForm() {
 
       <CardContainer >
         <Card>
-          <ValueResult>Name: </ValueResult>
-          <ValueResult>Surname: </ValueResult>
-          <ValueResult>Age: </ValueResult>
-          <ValueResult>Position: </ValueResult>
+          <ValueResult>Name: {formValues[EMPLOYEE_FORM_FIELD_NAMES.FIRST_NAME]}</ValueResult>
+          <ValueResult>Surname: {formValues[EMPLOYEE_FORM_FIELD_NAMES.LAST_NAME]}</ValueResult>
+          <ValueResult>Age: {formValues[EMPLOYEE_FORM_FIELD_NAMES.AGE]}</ValueResult>
+          <ValueResult>Position: {formValues[EMPLOYEE_FORM_FIELD_NAMES.POSITION]}</ValueResult>
         </Card>
       </CardContainer>
     </EmployeeFormContainer>
