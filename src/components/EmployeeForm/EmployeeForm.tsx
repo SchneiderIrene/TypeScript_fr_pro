@@ -1,11 +1,17 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useState } from 'react';
 
 import {
   EmployeeFormComponent,
   CheckBox,
   Label,
   CheckBoxContainer,
+  EmployeeFormContainer,
+  CardContainer,
+  CheckBoxError,
+  Card,
+  ValueResult
 } from './styles';
 import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
@@ -26,6 +32,7 @@ function EmployeeForm() {
       .required('Please, enter your age')
       .typeError('Enter number')
       .min(1, 'Min 1 symbol')
+      //.test('check lenght', 'Max 3 symbols', value => String(value).length<=3)
       .max(999, 'Max 3 symbols'),
 
     [EMPLOYEE_FORM_FIELD_NAMES.POSITION]: Yup.string().max(
@@ -33,7 +40,10 @@ function EmployeeForm() {
       'Max 30 symbols'
     ),
 
-    [EMPLOYEE_FORM_FIELD_NAMES.I_AGREE]: Yup.boolean(),
+    [EMPLOYEE_FORM_FIELD_NAMES.I_AGREE]: Yup.boolean().oneOf(
+      [true],
+      'Accept argument'
+    ),
   });
 
   const formik = useFormik({
@@ -51,57 +61,81 @@ function EmployeeForm() {
     },
   });
 
+  const [value, setValue] = useState<EmployeeFormValues>({
+    firstName: '',
+      lastName: '',
+      age: '',
+      position: '',
+      iAgree: false,
+  });
+
+
   return (
-    <EmployeeFormComponent onSubmit={formik.handleSubmit}>
-      <Input
-        name={EMPLOYEE_FORM_FIELD_NAMES.FIRST_NAME}
-        label="First name"
-        placeholder="First name"
-        onInputChange={formik.handleChange}
-        value={formik.values[EMPLOYEE_FORM_FIELD_NAMES.FIRST_NAME]}
-        error={formik.errors[EMPLOYEE_FORM_FIELD_NAMES.FIRST_NAME]}
-      />
-
-      <Input
-        name={EMPLOYEE_FORM_FIELD_NAMES.LAST_NAME}
-        label="Last name"
-        placeholder="Last name"
-        onInputChange={formik.handleChange}
-        value={formik.values[EMPLOYEE_FORM_FIELD_NAMES.LAST_NAME]}
-        error={formik.errors[EMPLOYEE_FORM_FIELD_NAMES.LAST_NAME]}
-      />
-
-      <Input
-        name={EMPLOYEE_FORM_FIELD_NAMES.AGE}
-        label="Age"
-        placeholder="Age"
-        onInputChange={formik.handleChange}
-        value={formik.values[EMPLOYEE_FORM_FIELD_NAMES.AGE]}
-        error={formik.errors[EMPLOYEE_FORM_FIELD_NAMES.AGE]}
-      />
-
-      <Input
-        name={EMPLOYEE_FORM_FIELD_NAMES.POSITION}
-        label="Position"
-        placeholder="Position"
-        onInputChange={formik.handleChange}
-        value={formik.values[EMPLOYEE_FORM_FIELD_NAMES.POSITION]}
-        error={formik.errors[EMPLOYEE_FORM_FIELD_NAMES.POSITION]}
-      />
-
-      <CheckBoxContainer>
-        <Label htmlFor="checkbox-id">I Agree</Label>
-        <CheckBox
-          id="checkbox-id"
-          type="checkbox"
-          name={EMPLOYEE_FORM_FIELD_NAMES.I_AGREE}
-          onChange={formik.handleChange}
-          checked={formik.values[EMPLOYEE_FORM_FIELD_NAMES.I_AGREE]}
+    <EmployeeFormContainer>
+      <EmployeeFormComponent onSubmit={formik.handleSubmit}>
+        <Input
+          name={EMPLOYEE_FORM_FIELD_NAMES.FIRST_NAME}
+          label="First name"
+          placeholder="First name"
+          onInputChange={formik.handleChange}
+          value={formik.values[EMPLOYEE_FORM_FIELD_NAMES.FIRST_NAME]}
+          error={formik.errors[EMPLOYEE_FORM_FIELD_NAMES.FIRST_NAME]}
         />
-      </CheckBoxContainer>
 
-      <Button name="Create" type="submit" disabled={!formik.values.iAgree} />
-    </EmployeeFormComponent>
+        <Input
+          name={EMPLOYEE_FORM_FIELD_NAMES.LAST_NAME}
+          label="Last name"
+          placeholder="Last name"
+          onInputChange={formik.handleChange}
+          value={formik.values[EMPLOYEE_FORM_FIELD_NAMES.LAST_NAME]}
+          error={formik.errors[EMPLOYEE_FORM_FIELD_NAMES.LAST_NAME]}
+        />
+
+        <Input
+          name={EMPLOYEE_FORM_FIELD_NAMES.AGE}
+          label="Age"
+          placeholder="Age"
+          onInputChange={formik.handleChange}
+          value={formik.values[EMPLOYEE_FORM_FIELD_NAMES.AGE]}
+          error={formik.errors[EMPLOYEE_FORM_FIELD_NAMES.AGE]}
+        />
+
+        <Input
+          name={EMPLOYEE_FORM_FIELD_NAMES.POSITION}
+          label="Position"
+          placeholder="Position"
+          onInputChange={formik.handleChange}
+          value={formik.values[EMPLOYEE_FORM_FIELD_NAMES.POSITION]}
+          error={formik.errors[EMPLOYEE_FORM_FIELD_NAMES.POSITION]}
+        />
+
+        <CheckBoxContainer>
+          <Label htmlFor="checkbox-id">I Agree</Label>
+          <CheckBox
+            id="checkbox-id"
+            type="checkbox"
+            name={EMPLOYEE_FORM_FIELD_NAMES.I_AGREE}
+            onChange={formik.handleChange}
+            checked={formik.values[EMPLOYEE_FORM_FIELD_NAMES.I_AGREE]}
+          />
+        </CheckBoxContainer>
+        <CheckBoxError>
+          {formik.errors[EMPLOYEE_FORM_FIELD_NAMES.I_AGREE]}
+        </CheckBoxError>
+
+        {/* <Button name="Create" type="submit" disabled={!formik.values.iAgree} /> */}
+        <Button name="Create" type="submit" />
+      </EmployeeFormComponent>
+
+      <CardContainer >
+        <Card>
+          <ValueResult>Name: </ValueResult>
+          <ValueResult>Surname: </ValueResult>
+          <ValueResult>Age: </ValueResult>
+          <ValueResult>Position: </ValueResult>
+        </Card>
+      </CardContainer>
+    </EmployeeFormContainer>
   );
 }
 

@@ -13,8 +13,8 @@ export const InputComponentContainer  = styled.div`
   `
    
    export const InputComponent = styled.input`
-   width: 100 %;
-   height: 50px;
+   width: 100%;
+   height: 30px;
    padding: 12px;
    outline: none;
    border: 1px solid black;

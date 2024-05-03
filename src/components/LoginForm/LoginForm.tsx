@@ -46,7 +46,7 @@ console.log(formik);
           onInputChange={formik.handleChange}
           value={formik.values[LOGIN_FIELD_NAMES.EMAIL]}
           error={formik.errors[LOGIN_FIELD_NAMES.EMAIL]}
-          onBlur={}
+          onBlur={formik.handleBlur}
         />
         <Input
           name={LOGIN_FIELD_NAMES.PASSWORD}
