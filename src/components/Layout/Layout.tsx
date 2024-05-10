@@ -9,13 +9,22 @@ import {
   NavContainer,
 } from './styles';
 import { LayoutProps } from './types';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Layout({ children }: LayoutProps) {
+
+//const navigate = useNavigate();
+
   return (
     <LayoutComponent>
       <Header>
         <HeaderLogoContainer>
-          <HeaderLogo />
+      {/* onClick={()=>navigate('/')} */}
+      
+          <Link to="/">
+            <HeaderLogo />
+          </Link>
         </HeaderLogoContainer>
         <NavContainer>
           <StyledNavLink
@@ -41,6 +50,14 @@ function Layout({ children }: LayoutProps) {
             })}
           >
             Users
+          </StyledNavLink>
+          <StyledNavLink
+            to="/client"
+            style={({ isActive }) => ({
+              textDecoration: isActive ? 'underline' : 'none',
+            })}
+          >
+            Client
           </StyledNavLink>
         </NavContainer>
       </Header>

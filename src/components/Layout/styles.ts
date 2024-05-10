@@ -38,6 +38,7 @@ export const Footer = styled.footer`
 export const HeaderLogoContainer = styled.div`
   width: 100px;
   height: 100px;
+  //cursor: pointer;
 `;
 export const HeaderLogo = styled.img`
   width: 100%;
@@ -55,4 +56,7 @@ export const StyledNavLink = styled(NavLink)`
 font-size: 20px;
 text-decoration: none;
 color: aliceblue;
+`
+
+export const Link = styled.link`
 `
