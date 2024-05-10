@@ -1,21 +1,23 @@
 import GlobalStyles from 'globalStyles/GlobalStyles';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Layout from 'components/Layout/Layout';
-import Home from 'pages/Home/Home';
-import About from 'pages/About/About';
-import Users from 'pages/Users/Users';
-import Client from 'pages/Client/Client';
-import Company1 from 'pages/Client/Company1/Company1';
-import Company2 from 'pages/Client/Company2/Company2';
-import Company3 from 'pages/Client/Company3/Company3';
+// import Layout from 'components/Layout/Layout';
+// import Home from 'pages/Home/Home';
+// import About from 'pages/About/About';
+// import Users from 'pages/Users/Users';
+// import Client from 'pages/Client/Client';
+// import Company1 from 'pages/Client/Company1/Company1';
+// import Company2 from 'pages/Client/Company2/Company2';
+// import Company3 from 'pages/Client/Company3/Company3';
 
+import Lesson14 from 'lessons/Lesson14/Lesson14';
 
 function App() {
   return (
     <BrowserRouter>
       <GlobalStyles />
-      <Layout>
+
+      {/* <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -26,7 +28,9 @@ function App() {
           <Route path="/clients/company3" element={<Company3 />} />
           <Route path="*" element="Page Not Found" />
         </Routes>
-      </Layout>
+      </Layout> */}
+
+      <Lesson14 />
     </BrowserRouter>
   );
 }
