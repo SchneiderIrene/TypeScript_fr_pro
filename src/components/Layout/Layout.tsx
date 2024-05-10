@@ -9,20 +9,22 @@ import {
   NavContainer,
 } from './styles';
 import { LayoutProps } from './types';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Layout({ children }: LayoutProps) {
+
+//const navigate = useNavigate();
+
   return (
     <LayoutComponent>
       <Header>
         <HeaderLogoContainer>
-          <StyledNavLink
-            to="/"
-            style={({ isActive }) => ({
-              textDecoration: isActive ? 'underline' : 'none',
-            })}
-          >
+      {/* onClick={()=>navigate('/')} */}
+      
+          <Link to="/">
             <HeaderLogo />
-          </StyledNavLink>
+          </Link>
         </HeaderLogoContainer>
         <NavContainer>
           <StyledNavLink

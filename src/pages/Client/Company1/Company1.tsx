@@ -1,13 +1,12 @@
-import Button from 'components/Button/Button';
+import GoBackButton from 'components/GoToBackButton/GoToBackButton';
 import {
   CompanyContainer,
   TextCompany,
-  ButtonContainer,
   CompanyName,
 } from '../styles';
-import { StyledNavLink } from '../../../components/Layout/styles';
 
 function Company1() {
+
   return (
     <CompanyContainer>
       <CompanyName>Company1</CompanyName>
@@ -25,18 +24,8 @@ function Company1() {
         perspiciatis. Nemo facilis porro dolor eaque. Dolorum commodi culpa
         nostrum ab mollitia? Dignissimos, laborum ipsum.
       </TextCompany>
-      <ButtonContainer>
-        <StyledNavLink
-          to="/client"
-          style={({ isActive }) => ({
-            textDecoration: isActive ? 'underline' : 'none',
-          })}
-        >
-          <Button name="Go back" />
-        </StyledNavLink>
-      </ButtonContainer>
+      <GoBackButton/>
     </CompanyContainer>
   );
 }
-
 export default Company1;

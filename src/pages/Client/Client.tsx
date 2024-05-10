@@ -4,6 +4,7 @@ import Company3 from 'pages/Client/Company3/Company3';
 
 import { StyledNavLink, ClientPageContainer } from './styles';
 
+
 function Client() {
   return (
     <ClientPageContainer>
