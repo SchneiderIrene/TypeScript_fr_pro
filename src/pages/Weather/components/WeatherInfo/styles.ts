@@ -21,6 +21,24 @@ border-radius: 18px;
 color: aliceblue;
 padding: 20px;
 `
+
+export const IconWeatherContainer = styled.div`
+width: 290px;
+height: 74px;
+display: flex;
+`
+export const IconWeather = styled.img``
+
+export const Temperatur = styled.p`
+display: flex;
+justify-content: start;
+gap: 30px;
+font-size: 57px;
+`
+export const City = styled.p`
+font-size: 18px;
+`
+
 export const FeelsLikeBlock = styled.div`
 display: flex;
 align-items: start;
@@ -45,3 +63,9 @@ width: 23px;
 height: 23px;
 `
 IconTemperatur.defaultProps = { src: IconTemp };
+
+export const FeelsLikeResult = styled.div`
+font-size: 42px;
+color: aliceblue;
+`
+

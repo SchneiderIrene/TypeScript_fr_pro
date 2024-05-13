@@ -4,7 +4,7 @@ function WeatherError(){
     return(
 <WeatherErrorWrapper>
 <ApiError>API Error</ApiError>
-<MessageError>Something went wrong with API data</MessageError>
+<MessageError>City not found</MessageError>
 </WeatherErrorWrapper>
     )
 }

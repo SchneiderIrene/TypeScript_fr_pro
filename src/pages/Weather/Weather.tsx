@@ -19,27 +19,33 @@ function Weather() {
   const [weatherData, setWeatherData] = useState<WeatherData>({
     city: '',
     temp: '',
-    feelsLike: ''
+    feelsLike: '',
+    icon: ''
   });
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [showWeatherInfo, setShowWeatherInfo] = useState<boolean>(false);
+  const [showWeatherError, setShowWeatherError] = useState<boolean>(false);
 
-  const API_key = 'f648a0bad836a08ddbddfc508621ebf2;
+  const API_key = 'f648a0bad836a08ddbddfc508621ebf2';
 
   const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     setCity(event.target.value);
   };
 
   const getWeather = async () => {
+    
+    setCity('');
+    setShowWeatherInfo(false);
+    setShowWeatherError(false);
+
     if (!city) {
       alert('Please, enter the city');
       return;
     }
-console.log("РАБОТАЕТ ЗАПРОС");
 
     setLoading(true);
     setError(null);
-
 
     try {
       setLoading(true);
@@ -53,15 +59,34 @@ console.log("РАБОТАЕТ ЗАПРОС");
           response: result,
         });
       } else {
-        setWeatherData(result);
+        
+        const celc = (kelv: number): string =>{
+          return `${(Number(kelv) - 273.15).toFixed(1)}°`;
+        }
+        
+        const weatherInfo = {
+          city: result.name,
+          temp: celc(result.main.temp),
+          feelsLike: celc(result.main.feels_like),
+          icon: result.weather[0].icon
+        };
+
+        setWeatherData(weatherInfo);
+        setShowWeatherInfo(true);
+        setCity('');
+        setShowWeatherError(false);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
+      setError('API Error');
+      setShowWeatherError(true);
+      setCity('');
+    } finally {
+      setLoading(false);
     }
-      finally {
-        setLoading(false);
-      }
   };
+
+
 
   return (
     <WeatherWrapper>
@@ -77,9 +102,9 @@ console.log("РАБОТАЕТ ЗАПРОС");
           />
           <WeatherButton onClick={getWeather}>Search</WeatherButton>
         </WeatherSearchWrapper>
-        <WeatherInfo WeatherData={weatherData}/>
-        <WeatherError />
-        <Spiner />
+        {loading && <Spiner />}
+        {weatherData && showWeatherInfo && (<WeatherInfo WeatherData={weatherData} />)}
+        {showWeatherError && <WeatherError />}
       </WeatherMain>
     </WeatherWrapper>
   );
