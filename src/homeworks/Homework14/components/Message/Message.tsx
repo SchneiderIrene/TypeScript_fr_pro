@@ -1,24 +1,24 @@
-import { createContext, useState } from 'react';
-import {MessageContainer} from './styles'
+import { useContext } from 'react';
+import { MessageContainer, MessageComponent } from './styles';
+import { MessagePost } from '../BlogManagement/BlogManagement';
+import Button from 'components/Button/Button';
 
+function Message() {
+  const { message, onChange, setTextArea } = useContext(MessagePost);
 
+  const onDelete = () => {
+    onChange('');
+    setTextArea('');
+  };
 
-export const MessageContext = createContext('')
+  console.log(message);
 
-
-
-function Message(){
-
-const [message, setMessage] = useState<string>('');
-
-    
-    return (
-<MessageContext.Provider value={message}>
-
-    <MessageContainer></MessageContainer>
-</MessageContext.Provider>
-
-    )
+  return (
+    <MessageComponent>
+      <MessageContainer>{message}</MessageContainer>
+      <Button name="Delete" onButtonClick={onDelete} />
+    </MessageComponent>
+  );
 }
 
 export default Message;

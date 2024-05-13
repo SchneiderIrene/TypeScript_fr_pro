@@ -1,29 +1,39 @@
-import { ChangeEvent, useState } from 'react';
-import {BlogManagerContainer, TextArea, ButtonContainer} from './styles'
+import { ChangeEvent, useState, createContext } from 'react';
+import { BlogManagerContainer, TextArea, ButtonContainer } from './styles';
+import {MessagePostContext} from './types'
 import Button from 'components/Button/Button';
-import Card  from '../Card/Card';
+import Card from '../Card/Card';
 
-function BlogManagement(){
+export const MessagePost = createContext({
+    message: '',
+    onChange: ()=>{},
+    setTextArea: ()=>{}
+} as MessagePostContext);
 
-const [textArea, setTextArea] = useState<string>('');
-const [post, setPost] = useState<string>(textArea);
+function BlogManagement() {
+  const [textArea, setTextArea] = useState<string>('');
+  const [post, setPost] = useState<string>('');
 
-const onChangeTextArea = (event: ChangeEvent<HTMLTextAreaElement>)=>{
+  const onChangeTextArea = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setTextArea(event.target.value);
-}
+  };
 
-const onPost = ()=>{
-setPost(post);
-}
+  const onPost = () => {
+    setPost(textArea);
+    //setTextArea('');
+  };
 
-
-    return <BlogManagerContainer>
-        <TextArea value={textArea} onChange={onChangeTextArea}/>
+  return (
+    <MessagePost.Provider value={{message: post, onChange: setPost, setTextArea: setTextArea}}>
+      <BlogManagerContainer>
+        <TextArea value={textArea} onChange={onChangeTextArea} />
         <ButtonContainer>
-            <Button name='Post' onButtonClick={onPost}/>
+          <Button name="Post" onButtonClick={onPost} />
         </ButtonContainer>
-        <Card/>
-        </BlogManagerContainer>
+        {post&&<Card />}
+      </BlogManagerContainer>
+    </MessagePost.Provider>
+  );
 }
 
 export default BlogManagement;
