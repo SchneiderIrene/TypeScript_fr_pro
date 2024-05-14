@@ -1,50 +1,25 @@
+import { WeatherInfoProps } from "./types";
 import {
+  CityName,
+  IconWrapper,
+  TempWrapper,
+  WeatherInfoContainer,
   WeatherInfoWrapper,
-  WeatherBlock,
-  FeelsLikeBlock,
-  IconTemperatur,
-  FeelsLikeTitle,
-  City,
-  Temperatur,
-  IconWeather,
-  IconWeatherContainer,
-  FeelsLikeResult
-} from './styles';
+  WeatherImg,
+} from "./styles";
 
-import { WeatherDataProps } from './types';
-
-function WeatherInfo({ WeatherData }: WeatherDataProps) {
+function WeatherInfo({ temp, icon, cityName }: WeatherInfoProps) {
   return (
     <WeatherInfoWrapper>
-      <WeatherBlock>
-        <Temperatur>
-          {WeatherData.temp}
-          <IconWeatherContainer>
-            {WeatherData.icon && (
-              <>
-                <IconWeather
-                  src={`http://openweathermap.org/img/w/${WeatherData.icon}.png`}
-                />
-                <IconWeather
-                  src={`http://openweathermap.org/img/w/${WeatherData.icon}.png`}
-                />
-                <IconWeather
-                  src={`http://openweathermap.org/img/w/${WeatherData.icon}.png`}
-                />
-              </>
-            )}
-          </IconWeatherContainer>
-        </Temperatur>
-        <City> {WeatherData.city}</City>
-      </WeatherBlock>
-      <FeelsLikeBlock>
-        <IconTemperatur />
-        <FeelsLikeTitle>
-          FEELS LIKE
-          <FeelsLikeResult>{WeatherData.feelsLike}</FeelsLikeResult>
-          
-        </FeelsLikeTitle>
-      </FeelsLikeBlock>
+      <WeatherInfoContainer>
+        <TempWrapper>
+          {temp}
+          <CityName>{cityName}</CityName>
+        </TempWrapper>
+        <IconWrapper>
+          <WeatherImg src={icon} alt="Weather Icon" />
+        </IconWrapper>
+      </WeatherInfoContainer>
     </WeatherInfoWrapper>
   );
 }

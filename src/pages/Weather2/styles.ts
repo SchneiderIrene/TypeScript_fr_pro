@@ -3,71 +3,55 @@ import styled from "@emotion/styled";
 import { Background } from "assets";
 
 export const WeatherWrapper = styled.div`
-display: flex;
-flex-direction: column;
-flex: 1;
-background-image: url(${Background});
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: url(${Background});
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
 
-`
+export const Header = styled.header`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  padding: 25px 85px;
+  border-bottom: 1px #d2d2d2 solid;
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    ),
+    rgba(18, 45, 77, 0.5);
+  backdrop-filter: blur(8px);
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+`;
 
-export const WeatherHeader = styled.header`
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: rgba(18, 45, 77, 0.5);
-height: 80px;
-border-bottom: 1px solid aliceblue;
-backdrop-filter: blur(8px);
-`
+export const Main = styled.main`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+`;
 
-export const WeatherTitle = styled.h1`
-font-size: 24px;
-font-family: 'Inter';
-color: #FFFFFF;
-`
+export const WeatherForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 709px;
+  gap: 60px;
+  margin-top: 140px;
+`;
 
-export const WeatherMain = styled.div`
-display: flex;
-flex-direction: column;
-flex: 1;
-align-items: center;
-padding: 120px;
-gap: 50px;
-`
+export const InputButtonWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 12px;
+`;
 
-export const WeatherSearchWrapper = styled.div`
-display: flex;
-gap: 14px;
-
-`
-
-export const WeatherButton = styled.button`
-width: 146px;
-height: 48px;
-border-radius: 50px;
-background-color: rgba(54, 120, 180, 1);
-border: none;
-color: aliceblue;
-font-size: 20px;
-cursor: pointer;
-`
-
-export const WeatherInput = styled.input`
-height: 48px;
-width: 550px;
-border-radius: 40px;
-background-color: rgba(255, 255, 255, 0.1);
-border: 1px solid aliceblue;
-outline: none;
-padding: 20px;
-color: aliceblue;
-gap: 10px;
-font-size: 20px;
-padding: 20px;
-font-weight: bold;
-
-::placeholder{
-    color: rgba(255, 255, 255, 0.6);
-}
-
-`
+export const WeatherButtonWrapper = styled.div`
+  width: 146px;
+`;

@@ -1,6 +1,10 @@
-export interface WeatherData{
-    city: string,
-    temp: string,
-    feelsLike: string,
-    icon: any
-}
+export interface WeatherInfoData {
+    temp: string;
+    icon: string;
+    cityName: string
+  }
+  
+  export interface WeatherErrorData {
+    code: string;
+    message: string
+  }

@@ -1,134 +1,96 @@
-import WeatherInfo from './components/WeatherInfo/WeatherInfo';
-import WeatherError from './components/WeatherError/WeatherError';
-import Spiner from 'components/Spiner/Spiner';
-import { WeatherData } from './types';
+import { ChangeEvent, useState } from "react";
 
+import Input from "components/Input/Input";
+import Button from "components/Button/Button";
 import {
   WeatherWrapper,
-  WeatherHeader,
-  WeatherTitle,
-  WeatherSearchWrapper,
-  WeatherButton,
-  WeatherInput,
-  WeatherMain,
-} from './styles';
-import { ChangeEvent, useState } from 'react';
+  Header,
+  Main,
+  WeatherForm,
+  WeatherButtonWrapper,
+  InputButtonWrapper,
+} from "./styles";
+import { WeatherErrorData, WeatherInfoData } from "./types";
+import WeatherInfo from "./components/WeatherInfo/WeatherInfo";
+import WeatherError from "./components/WeatherError/WeatherError";
+import Spiner from "components/Spiner/Spiner";
 
-function Weather2() {
+function Weather() {
+  //Контролируем Input
   const [city, setCity] = useState<string>('');
-  const [weatherData, setWeatherData] = useState<WeatherData>({
-    city: '',
-    temp: '',
-    feelsLike: '',
-    icon: ''
-  });
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [showWeatherInfo, setShowWeatherInfo] = useState<boolean>(false);
-  const [showWeatherError, setShowWeatherError] = useState<boolean>(false);
+  // стейт для хранения необходимых данных погоде
+  const [weatherInfo, setWeatherInfo] = useState<WeatherInfoData | undefined>(undefined);
+  // стейт для хранения данных ошибке
+  const [weatherError, setWeatherError] = useState<WeatherErrorData | undefined>(undefined);
+  //стейт, который контролирует индикатор загрузки
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  const API_key = 'f648a0bad836a08ddbddfc508621ebf2';
+  const APP_ID: string = "eea75aae6dbe00233ac1efadf2d99a2a";
+  const URL: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APP_ID}`;
 
-  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setCity(event.target.value);
-  };
-
-  const getWeather = async () => {
-    
-    
-
-    if (!city && city.trim().length===0) {
-      alert('Please, enter the city');
-      return;
+  const getWeatherInfo = async () => {
+    // Здесь проверяем пустоту поля
+    if (city.trim().length === 0) {
+      return alert('Enter city name')
     }
 
-    setCity('');
-    setShowWeatherInfo(false);
-    setShowWeatherError(false);
+    //Очищаем стейты с предыдущей информацией о погоде или ошибке
+    setWeatherInfo(undefined);
+    setWeatherError(undefined)
+    setIsLoading(true)
 
-    setLoading(true);
-    setError(null);
+    const response = await fetch(URL);
+    const data = await response.json();
 
-    try {
-      setLoading(true);
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_key}`
-      );
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw Object.assign(new Error('API Error'), {
-          response: result,
-        });
-      } else {
-        
-        const celc = (kelv: number): string =>{
-          return `${(Number(kelv) - 273.15).toFixed(1)}°`;
-        }
-        
-        const weatherInfo = {
-          city: result.name,
-          temp: celc(result.main.temp),
-          feelsLike: celc(result.main.feels_like),
-          icon: result.weather[0].icon
-        };
-
-        setWeatherData(weatherInfo);
-        setShowWeatherInfo(true);
-        setCity('');
-        setShowWeatherError(false);
-      }
-    } catch (error) {
-      console.log(error)
-      setError('API Error');
-      setShowWeatherError(true);
-      setCity('');
-    } finally {
-      setLoading(false);
+    if (response.ok) {
+      setIsLoading(false);
+      setWeatherInfo({
+        temp: `${Math.round(data?.main?.temp - 273.15)}°C`,
+        icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
+        cityName: `${data?.name}`
+      })
+    } else {
+      setIsLoading(false);
+      //Логика работы с ошибкой
+      setWeatherError({
+        code: data?.cod, message: data?.message
+      })
     }
-  };
+  }
 
-
+  //Контролируем Input
+  const onChangeCity = (event: ChangeEvent<HTMLInputElement>) => {
+    setCity(event.target.value)
+  }
 
   return (
     <WeatherWrapper>
-      <WeatherHeader>
-        <WeatherTitle> Weather App </WeatherTitle>
-      </WeatherHeader>
-      <WeatherMain>
-        <WeatherSearchWrapper>
-          <WeatherInput
-            placeholder="Colorado"
-            value={city}
-            onChange={onChangeInput}
-          />
-          <WeatherButton onClick={getWeather}>Search</WeatherButton>
-        </WeatherSearchWrapper>
-        {loading && <Spiner />}
-        {weatherData && showWeatherInfo && (<WeatherInfo WeatherData={weatherData} />)}
-        {showWeatherError && <WeatherError />}
-      </WeatherMain>
+      <Header>Weather App</Header>
+      <Main>
+        <WeatherForm>
+          <InputButtonWrapper>
+            <Input
+              placeholder="Enter city name"
+              onInputChange={onChangeCity}
+              value={city}
+              name="city"
+            />
+            <WeatherButtonWrapper>
+              <Button name="Search" onButtonClick={getWeatherInfo} />
+            </WeatherButtonWrapper>
+          </InputButtonWrapper>
+          {isLoading && <Spiner />}
+          {!!weatherInfo && (
+            <WeatherInfo
+              temp={weatherInfo?.temp}
+              icon={weatherInfo?.icon}
+              cityName={weatherInfo?.cityName}
+            />)}
+          {!!weatherError && (<WeatherError error={weatherError} />)}
+        </WeatherForm>
+      </Main>
     </WeatherWrapper>
   );
 }
 
-export default Weather2;
-
-//Содержание страницы с приложением Weather App
-
-// заголовок - “Weather app”
-// поле для ввода города, данные по погоде которого мы хотим получить
-// кнопка “Получить погоду”
-// область для отображения данных о погоде или ошибке
-
-// Требования к функциональности приложения Weather App
-// Работу нужно вести в отдельной ветке
-// При нажатии на кнопку “Получить погоду”, должен отправляться запрос на url:
-// https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&appid=${APP_ID}
-// Во время ожидания ответа нужно отображать индикатор (внешний вид на ваше усмотрение)
-// После успешного получения данных, их нужно отобразить на странице.
-// Иконку для отображения результата, нужно получить по url:
-// http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png
-// При получении ошибки, её данные нужно отобразить на странице, вместо данных о погоде
-// При отсутствии названия города, после нажатия на кнопку
-// “Получить погоду” должен появиться alert с просьбой ввести название города
+export default Weather;
