@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import Company2 from 'pages/Client/Company2/Company2';
 // import Company3 from 'pages/Client/Company3/Company3';
 
-import Homework14 from 'homeworks/Homework14/Homework14';
+import Weather2 from 'pages/Weather2/Weather2';
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
         </Routes>
       </Layout> */}
 
-      <Homework14 />
+      <Weather2 />
     </BrowserRouter>
   );
 }
