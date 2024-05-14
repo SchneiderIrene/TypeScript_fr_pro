@@ -42,6 +42,7 @@ function WeatherInfo({ WeatherData }: WeatherDataProps) {
         <FeelsLikeTitle>
           FEELS LIKE
           <FeelsLikeResult>{WeatherData.feelsLike}</FeelsLikeResult>
+          
         </FeelsLikeTitle>
       </FeelsLikeBlock>
     </WeatherInfoWrapper>

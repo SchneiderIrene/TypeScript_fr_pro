@@ -14,13 +14,13 @@ import {
 } from './styles';
 import { ChangeEvent, useState } from 'react';
 
-function Weather() {
+function Weather2() {
   const [city, setCity] = useState<string>('');
   const [weatherData, setWeatherData] = useState<WeatherData>({
     city: '',
     temp: '',
     feelsLike: '',
-    icon: '',
+    icon: ''
   });
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -34,15 +34,18 @@ function Weather() {
   };
 
   const getWeather = async () => {
-    if (!city && city.trim().length === 0) {
+    
+    
+
+    if (!city && city.trim().length===0) {
       alert('Please, enter the city');
       return;
     }
 
-    
     setCity('');
     setShowWeatherInfo(false);
     setShowWeatherError(false);
+
     setLoading(true);
     setError(null);
 
@@ -58,15 +61,16 @@ function Weather() {
           response: result,
         });
       } else {
-        const celc = (kelv: number): string => {
+        
+        const celc = (kelv: number): string =>{
           return `${(Number(kelv) - 273.15).toFixed(1)}°`;
-        };
-
+        }
+        
         const weatherInfo = {
           city: result.name,
           temp: celc(result.main.temp),
           feelsLike: celc(result.main.feels_like),
-          icon: result.weather[0].icon,
+          icon: result.weather[0].icon
         };
 
         setWeatherData(weatherInfo);
@@ -75,7 +79,7 @@ function Weather() {
         setShowWeatherError(false);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
       setError('API Error');
       setShowWeatherError(true);
       setCity('');
@@ -83,6 +87,8 @@ function Weather() {
       setLoading(false);
     }
   };
+
+
 
   return (
     <WeatherWrapper>
@@ -99,16 +105,14 @@ function Weather() {
           <WeatherButton onClick={getWeather}>Search</WeatherButton>
         </WeatherSearchWrapper>
         {loading && <Spiner />}
-        {weatherData && showWeatherInfo && (
-          <WeatherInfo WeatherData={weatherData} />
-        )}
+        {weatherData && showWeatherInfo && (<WeatherInfo WeatherData={weatherData} />)}
         {showWeatherError && <WeatherError />}
       </WeatherMain>
     </WeatherWrapper>
   );
 }
 
-export default Weather;
+export default Weather2;
 
 //Содержание страницы с приложением Weather App
 
