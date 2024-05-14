@@ -1,4 +1,4 @@
-import { useState, createContext} from "react";
+import { useState, createContext, ChangeEvent} from "react";
 import Section from "../Section/Section";
 import {MainContentComponent, MainTitle} from "./styles"
 import { UserData } from "./types";
@@ -18,6 +18,8 @@ const [userData, setUserData] = useState<UserData>({
     lastName: 'Simpson',
     age: 12
 })
+
+
 
     return (
         <MainContext.Provider  value={userData}>
